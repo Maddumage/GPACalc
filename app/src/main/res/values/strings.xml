@@ -29,4 +29,6 @@
     <string name="title_semester">Semester</string>
     <string name="title_sgpa">SGPA</string>
     <string name="title_credit">Credit</string>
+    <string name="action_date">Date</string>
+    <string name="login_view_footer">Don\'t have an account? Sign Up</string>
 </resources>

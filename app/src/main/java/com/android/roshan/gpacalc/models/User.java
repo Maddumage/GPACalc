@@ -6,10 +6,10 @@ package com.android.roshan.gpacalc.models;
 
 public class User {
 
-    int uid ;
-    String index;
-    String name;
-    String pword ;
+    private int uid ;
+    private String index;
+    private String name;
+    private String pword ;
 
     public User(){}
 

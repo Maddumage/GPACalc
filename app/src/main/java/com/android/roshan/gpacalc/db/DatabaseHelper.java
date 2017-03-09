@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.android.roshan.gpacalc.models.Semester;
 import com.android.roshan.gpacalc.models.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,4 +120,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         closeDatabase();
         return id;
     }
+    ///////Semester
+    public long addSemester(Semester semester) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("sgpa", semester.getSgpa());
+        contentValues.put("s_credits", semester.getScredit());
+        openDatabase();
+        long returnValue = mDatabase.insert("semester", null, contentValues);
+        closeDatabase();
+        return returnValue;
+    }
+    public boolean deleteSemesterById(int id) {
+        openDatabase();
+        int result = mDatabase.delete("semester",  "id =?", new String[]{String.valueOf(id)});
+        closeDatabase();
+        return result !=0;
+    }
+    public long updateSemester(Semester semester) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("sgpa", semester.getSgpa());
+        contentValues.put("s_credits", semester.getScredit());
+        String[] whereArgs = {Integer.toString(semester.getId())};
+        openDatabase();
+        long returnValue = mDatabase.update("semester",contentValues, "id=?", whereArgs);
+        closeDatabase();
+        return returnValue;
+    }
+    public ArrayList<Semester> getListSemester() {
+        Semester semester = null;
+        ArrayList<Semester> list = new ArrayList<>();
+        openDatabase();
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM semester", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            semester = new Semester(cursor.getInt(0), cursor.getFloat(1),cursor.getFloat(2));
+            list.add(semester);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        closeDatabase();
+        return list;
+    }
+
 }
