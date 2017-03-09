@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.roshan.gpacalc.R;
@@ -22,12 +23,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by amilah on 08-Mar-17.
- */
 
 public class HomeFragment extends ListFragment {
 
@@ -37,6 +36,8 @@ public class HomeFragment extends ListFragment {
     Semester semester;
     HomeAdapter homeAdapter;
     ListView listView;
+    TextView final_gpa,total_credits;
+    float f_gpa,t_credits;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,17 +64,27 @@ public class HomeFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.home_fragment,container,false);
+        final_gpa = (TextView)rootView.findViewById(R.id.tv_total_gpa);
+        total_credits = (TextView)rootView.findViewById(R.id.tv_total_credits);
 
         semesterList = databaseHelper.getListSemester();
         if (semesterList.size()>0) {
+            for (int i = 0; i < semesterList.size(); i++){
+                f_gpa = f_gpa + semesterList.get(i).getSgpa();
+                t_credits = t_credits + semesterList.get(i).getScredit();
+            }
             homeAdapter = new HomeAdapter(getContext(), semesterList);
-
             setListAdapter(homeAdapter);
         }
-        else
-            Toast.makeText(getContext(),"No Details",Toast.LENGTH_SHORT).show();
+        else {
+            Toast.makeText(getContext(), "No Details", Toast.LENGTH_SHORT).show();
+        }
 
-
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        String avg_gpa = df.format(f_gpa/semesterList.size());
+        final_gpa.setText(""+avg_gpa);
+        total_credits.setText(""+t_credits);
         return rootView;
     }
 

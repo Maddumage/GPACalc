@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:weightSum="1">
+            android:weightSum="1"
+            tools:ignore="DisableBaselineAlignment">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -36,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:id="@+id/tv_total_gpa"
+                    android:text="5.00"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -61,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:id="@+id/tv_total_credits"
+                    android:text="20"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -91,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_semester"
                 android:textColor="@color/black_overlay"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:layout_weight="0.33"/>
@@ -103,7 +105,7 @@
                 android:textColor="@color/black_overlay"
                 android:textSize="16sp"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:layout_weight="0.33"/>
             <TextView
                 android:layout_width="0dp"
@@ -112,14 +114,15 @@
                 android:textColor="@color/black_overlay"
                 android:textSize="16sp"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:layout_weight="0.33"/>
         </LinearLayout>
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp" />
+            android:background="@drawable/border"
+            android:layout_marginTop="52dp" />
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
