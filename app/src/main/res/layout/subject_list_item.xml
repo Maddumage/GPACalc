@@ -13,27 +13,35 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/sem_no"
+                android:id="@+id/sub_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.33"
+                android:layout_weight="0.2"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/colorPrimaryDark" />
 
             <TextView
-                android:id="@+id/sem_gpa"
+                android:id="@+id/sub_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.33"
+                android:layout_weight="0.4"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/colorPrimaryDark" />
             <TextView
-                android:id="@+id/sem_credit"
+                android:id="@+id/sub_credit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.33"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryDark" />
+            <TextView
+                android:id="@+id/sub_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/colorPrimaryDark" />

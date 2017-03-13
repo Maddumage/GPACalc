@@ -2,7 +2,6 @@ package com.android.roshan.gpacalc.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.roshan.gpacalc.R;
-import com.android.roshan.gpacalc.db.DBHelper;
 import com.android.roshan.gpacalc.db.DatabaseHelper;
 import com.android.roshan.gpacalc.models.User;
 

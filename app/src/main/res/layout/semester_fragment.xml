@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/total_gpa"
+                    android:text="@string/semester_gpa"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/black_overlay"
                     android:textStyle="normal" />
@@ -91,12 +91,12 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/title_semester"
+                android:text="@string/subject_code"
                 android:textColor="@color/black_overlay"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="0.33"/>
+                android:layout_weight="0.2"/>
             <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
@@ -104,12 +104,13 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/title_sgpa"
+                android:text="@string/subject_name"
                 android:textColor="@color/black_overlay"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:layout_weight="0.33"/>
+                android:layout_weight="0.4"/>
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
@@ -117,12 +118,25 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/title_credit"
+                android:text="@string/credit"
                 android:textColor="@color/black_overlay"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:layout_weight="0.33"/>
+                android:layout_weight="0.20"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/black_overlay" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Result"
+                android:textColor="@color/black_overlay"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_weight="0.20"/>
         </LinearLayout>
         <ListView
             android:id="@android:id/list"

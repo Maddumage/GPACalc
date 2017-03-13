@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.android.roshan.gpacalc.models.Semester;
+import com.android.roshan.gpacalc.models.Subject;
 import com.android.roshan.gpacalc.models.User;
+import com.android.roshan.gpacalc.util.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,4 +165,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    /////////////subjects
+
+    public long addSubject(Subject subject) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_CODE, subject.getSub_code());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_NAME, subject.getSub_name());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_CREDIT, subject.getSub_credit());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_RESULT, subject.getSub_credit());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SEM_ID, subject.getSem_id());
+        openDatabase();
+        long returnValue = mDatabase.insert(Constant.TABLE_NAME_SUBJECT, null, contentValues);
+        closeDatabase();
+        return returnValue;
+    }
+    public boolean deleteSubjectById(int id) {
+        openDatabase();
+        int result = mDatabase.delete(Constant.TABLE_NAME_SUBJECT,  "id =?", new String[]{String.valueOf(id)});
+        closeDatabase();
+        return result !=0;
+    }
+    public long updateSubject(Subject subject) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_CODE, subject.getSub_code());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_NAME, subject.getSub_name());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_CREDIT, subject.getSub_credit());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SUB_RESULT, subject.getSub_credit());
+        contentValues.put(Constant.TABLE_SUBJECT_COL_SEM_ID, subject.getSem_id());
+        String[] whereArgs = {Integer.toString(subject.getId())};
+        openDatabase();
+        long returnValue = mDatabase.update(Constant.TABLE_NAME_SUBJECT,contentValues, "id=?", whereArgs);
+        closeDatabase();
+        return returnValue;
+    }
+    public ArrayList<Subject> getListSubject(int id) {
+        Subject subject = null;
+        ArrayList<Subject> list = new ArrayList<>();
+        openDatabase();
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM subject WHERE sem_id="+id, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            subject = new Subject(cursor.getInt(0), cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getFloat(4),cursor.getString(5));
+            list.add(subject);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        closeDatabase();
+        return list;
+    }
 }

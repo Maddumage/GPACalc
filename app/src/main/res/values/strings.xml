@@ -31,4 +31,14 @@
     <string name="title_credit">Credit</string>
     <string name="action_date">Date</string>
     <string name="login_view_footer">Don\'t have an account? Sign Up</string>
+    <string name="semester_gpa">Semester GPA</string>
+    <string name="subject_code">Code</string>
+    <string name="subject_name">Subject Name</string>
+    <string name="Result">Result</string>
+    <string name="earn_credit">Credit</string>
+    <string name="credit">Credit</string>
+    <string name="subject_no">Semester No</string>
+    <string name="semester_no">Semester No</string>
+    <string name="subject_credit">Credit</string>
+    <string name="subject_result">Result</string>
 </resources>
