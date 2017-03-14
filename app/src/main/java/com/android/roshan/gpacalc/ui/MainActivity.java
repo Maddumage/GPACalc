@@ -18,8 +18,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.roshan.gpacalc.R;
+import com.android.roshan.gpacalc.fragment.Graph;
+import com.android.roshan.gpacalc.fragment.GraphFragment;
 import com.android.roshan.gpacalc.fragment.HomeFragment;
 import com.android.roshan.gpacalc.fragment.NoticeDialogFragment;
 
@@ -28,7 +33,8 @@ public class MainActivity extends AppCompatActivity
 
     FragmentTransaction fragmentTransaction;
     HomeFragment homeFragment;
-
+    Graph graphFragment;
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.content_main,homeFragment).commit();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +93,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_favorite:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
+                fab.setEnabled(false);
+                fab.setVisibility(View.GONE);
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                graphFragment = new Graph();
+                fragmentTransaction.replace(R.id.content_main,graphFragment).commit();
                 return true;
 
             default:
@@ -121,6 +132,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
     public void showNoticeDialog() {
+
+
         // Create an instance of the dialog fragment and show it
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.add_result, null);
@@ -131,8 +144,31 @@ public class MainActivity extends AppCompatActivity
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
 
-//        final EditText userInput = (EditText) promptsView
-//                .findViewById(R.id.editTextDialogUserInput);
+        NumberPicker np = (NumberPicker)promptsView.findViewById(R.id.semester_no_picker);
+//Set the minimum value of NumberPicker
+        np.setMinValue(1);
+        //Specify the maximum value/number of NumberPicker
+        np.setMaxValue(10);
+
+        //Gets whether the selector wheel wraps when reaching the min/max value.
+        np.setWrapSelectorWheel(true);
+
+        //Set a value change listener for NumberPicker
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                //Display the newly selected number from picker
+                int sub_no = newVal;
+            }
+        });
+
+        final EditText input_sub_code = (EditText)promptsView.findViewById(R.id.input_subject_code);
+        final EditText input_sub_name = (EditText)promptsView.findViewById(R.id.input_subject_name);
+        final EditText input_sub_credit = (EditText)promptsView.findViewById(R.id.input_subject_credit);
+        final Spinner spinner = (Spinner)promptsView.findViewById(R.id.result_spinner);
+
+
+
 
         // set dialog message
         alertDialogBuilder
@@ -142,6 +178,11 @@ public class MainActivity extends AppCompatActivity
                             public void onClick(DialogInterface dialog,int id) {
                                 // get user input and set it to result
                                 // edit text
+                                String sub_code,sub_name,sub_credit,sub_result;
+                                sub_code = input_sub_code.getText().toString();
+                                sub_name = input_sub_name.getText().toString();
+                                sub_credit = input_sub_credit.getText().toString();
+                                sub_result = spinner.getSelectedItem().toString();
                             }
                         })
                 .setNegativeButton("Cancel",

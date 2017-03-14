@@ -1,19 +1,17 @@
 package com.android.roshan.gpacalc.fragment;
 
-import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,16 +23,13 @@ import com.android.roshan.gpacalc.db.DatabaseHelper;
 import com.android.roshan.gpacalc.models.Semester;
 import com.android.roshan.gpacalc.util.Constant;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class HomeFragment extends ListFragment {
+
+public class HomeFragment extends ListFragment{
 
     View rootView;
     ArrayList<Semester> semesterList;
@@ -81,6 +76,8 @@ public class HomeFragment extends ListFragment {
         String avg_gpa = df.format(f_gpa / semesterList.size());
         final_gpa.setText("" + avg_gpa);
         total_credits.setText("" + t_credits);
+
+
         return rootView;
     }
 
@@ -134,8 +131,5 @@ public class HomeFragment extends ListFragment {
             }
         });
 
-
     }
-
-
 }

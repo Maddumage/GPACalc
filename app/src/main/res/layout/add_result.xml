@@ -21,6 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_weight="0.1"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
             android:id="@+id/semester_no_picker"/>
     </LinearLayout>
     <LinearLayout
@@ -100,6 +101,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:entries="@array/result_arrays"
+            android:prompt="@string/result_prompt"
+            android:id="@+id/result_spinner"/>
     </LinearLayout>
 </LinearLayout>

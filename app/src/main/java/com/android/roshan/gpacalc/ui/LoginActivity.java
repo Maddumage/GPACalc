@@ -64,43 +64,43 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-        footerText = (TextView)findViewById(R.id.footerText);
+//        footerText = (TextView)findViewById(R.id.footerText);
+//
+//        SpannableString tc = new SpannableString("Don't have an account? Sign Up");
+//        clickableSpan = new ClickableSpan() {
+//            @Override
+//            public void onClick(View textView) {
+//                startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
+//            }
+//
+//            @Override
+//            public void updateDrawState(TextPaint ds) {
+//                super.updateDrawState(ds);
+//                ds.setUnderlineText(false);
+//                ds.setColor(getResources().getColor(R.color.colorPrimary));
+//            }
+//        };
+//        tc.setSpan(new StyleSpan(Typeface.BOLD), 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        tc.setSpan(clickableSpan, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        SpannableString tc = new SpannableString("Don't have an account? Sign Up");
-        clickableSpan = new ClickableSpan() {
-            @Override
-            public void onClick(View textView) {
-                startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
-            }
+//        footerText.setText(tc);
+//        footerText.setMovementMethod(LinkMovementMethod.getInstance());
+//        footerText.setHighlightColor(Color.TRANSPARENT);
 
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setUnderlineText(false);
-                ds.setColor(getResources().getColor(R.color.colorPrimary));
-            }
-        };
-        tc.setSpan(new StyleSpan(Typeface.BOLD), 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tc.setSpan(clickableSpan, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//
+//        input_username = (EditText) findViewById(R.id.input_login_username);
+//        input_password = (EditText) findViewById(R.id.input_login_password);
+//        btnLogin = (Button)findViewById(R.id.btnLogin);
 
-        footerText.setText(tc);
-        footerText.setMovementMethod(LinkMovementMethod.getInstance());
-        footerText.setHighlightColor(Color.TRANSPARENT);
-
-
-        input_username = (EditText) findViewById(R.id.input_login_username);
-        input_password = (EditText) findViewById(R.id.input_login_password);
-        btnLogin = (Button)findViewById(R.id.btnLogin);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                username = input_username.getText().toString();
-                password = input_password.getText().toString();
-                Log.i("login_input-----","Username :- "+username+"& Password :- "+password);
-                login(username,password);
-            }
-        });
+//        btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                username = input_username.getText().toString();
+//                password = input_password.getText().toString();
+//                Log.i("login_input-----","Username :- "+username+"& Password :- "+password);
+//                login(username,password);
+//            }
+//        });
 
     }
 

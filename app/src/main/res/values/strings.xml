@@ -1,24 +1,15 @@
 <resources>
     <string name="app_name">GPACalc</string>
 
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="create_acc_button">Create an Account</string>
-    <string name="user_index">Index No</string>
-    <string name="user_pword">Password</string>
     <string name="login">Login</string>
     <string name="uName">Index No</string>
     <string name="pword">Password</string>
     <string name="app_name_part_1">GPA</string>
     <string name="app_name_part_2">Calc</string>
-    <string name="sign_up_1">Don\'t have an account?</string>
-    <string name="sign_up_2">Sign Up</string>
     <string name="hint_index_no">Index No</string>
     <string name="hint_full_name">Full Name</string>
     <string name="hint_password">Password</string>
     <string name="button_reister">Register</string>
-    <string name="title_activity_main2">Main2Activity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -30,15 +21,33 @@
     <string name="title_sgpa">SGPA</string>
     <string name="title_credit">Credit</string>
     <string name="action_date">Date</string>
-    <string name="login_view_footer">Don\'t have an account? Sign Up</string>
     <string name="semester_gpa">Semester GPA</string>
     <string name="subject_code">Code</string>
     <string name="subject_name">Subject Name</string>
     <string name="Result">Result</string>
-    <string name="earn_credit">Credit</string>
     <string name="credit">Credit</string>
-    <string name="subject_no">Semester No</string>
     <string name="semester_no">Semester No</string>
     <string name="subject_credit">Credit</string>
     <string name="subject_result">Result</string>
+
+    <string name="result_prompt">Choose a country</string>
+    <string name="remember_me">Remember me</string>
+    <string name="password">Password</string>
+    <string name="user_name">Username</string>
+    <string name="copyright">copyright statement</string>
+    <string name="version">1.1.0</string>
+    <array name="result_arrays">
+        <item>A+</item>
+        <item>A</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B</item>
+        <item>B-</item>
+        <item>C+</item>
+        <item>C</item>
+        <item>C-</item>
+        <item>D-</item>
+        <item>I</item>
+        <item>F</item>
+    </array>
 </resources>
