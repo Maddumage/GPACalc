@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009a9a</color>
-    <color name="colorPrimaryDark">#005858</color>
-    <color name="colorAccent">#ff4081</color>
+    <!--<color name="colorPrimary">#009a9a</color>-->
+    <!--<color name="colorPrimaryDark">#005858</color>-->
+    <!--<color name="colorAccent">#ff4081</color>-->
     <color name="black_overlay">#66000000</color>
     <color name="color_app_name">#009a9a</color>
     <color name="text_color">#848484</color>
     <color name="white">#FFFFFF</color>
     <color name="text_hint_color">#02dada</color>
-    <color name="primary">#2f53a3</color>
-    <color name="primaryDark">#FF274689</color>
+    <color name="primary">#454255</color>
+    <color name="primaryDark">#274689</color>
+    <color name="accent">#f15ea2</color>
+    <color name="footer_text_color">#05867c</color>
+
+
+    <!--testStyle-->
+    <color name="colorPrimary">#282230</color>
+    <color name="colorPrimaryDark">#201c2a</color>
+    <color name="colorAccent">#f15ea2</color>
 </resources>

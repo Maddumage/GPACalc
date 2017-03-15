@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:id="@+id/tv_total_gpa"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/color_app_name"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:id="@+id/tv_total_credits"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/color_app_name"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textStyle="bold" />
             </LinearLayout>

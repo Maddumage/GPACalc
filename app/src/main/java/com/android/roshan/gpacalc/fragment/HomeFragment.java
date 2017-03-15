@@ -56,15 +56,11 @@ public class HomeFragment extends ListFragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.home_fragment, container, false);
-        final_gpa = (TextView) rootView.findViewById(R.id.tv_total_gpa);
+        final_gpa = (TextView) rootView.findViewById(R.id.total_gpa);
         total_credits = (TextView) rootView.findViewById(R.id.tv_total_credits);
 
         semesterList = databaseHelper.getListSemester();
         if (semesterList.size() > 0) {
-            for (int i = 0; i < semesterList.size(); i++) {
-                f_gpa = f_gpa + semesterList.get(i).getSgpa();
-                t_credits = t_credits + semesterList.get(i).getScredit();
-            }
             homeAdapter = new HomeAdapter(getContext(), semesterList);
             setListAdapter(homeAdapter);
         } else {
@@ -73,9 +69,9 @@ public class HomeFragment extends ListFragment{
 
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String avg_gpa = df.format(f_gpa / semesterList.size());
-        final_gpa.setText("" + avg_gpa);
-        total_credits.setText("" + t_credits);
+        String avg_gpa = df.format(databaseHelper.getAvgTotalGPA());
+        final_gpa.setText( avg_gpa);
+        total_credits.setText("" + databaseHelper.getTotalCreddit());
 
 
         return rootView;
@@ -95,7 +91,7 @@ public class HomeFragment extends ListFragment{
                 fragmentTransaction = getFragmentManager().beginTransaction();
                 semesterFragment = new SemesterFragment();
                 semesterFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.content_main,semesterFragment).commit();
+                fragmentTransaction.replace(R.id.content_main,semesterFragment).addToBackStack(null).commit();
             }
         });
 

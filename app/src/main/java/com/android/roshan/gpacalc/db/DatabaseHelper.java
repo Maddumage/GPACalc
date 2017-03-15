@@ -213,4 +213,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         closeDatabase();
         return list;
     }
+    public float getAvgTotalGPA()
+    {
+        openDatabase();
+        float avg = 0;
+        Cursor c = mDatabase.rawQuery("SELECT avg(sgpa) FROM semester ",null);
+        if(c.getCount()>0)
+        {
+            c.moveToFirst();
+            avg = c.getFloat(0);
+            c.close();
+        }
+        closeDatabase();
+        return avg;
+    }
+    public float getTotalCreddit()
+    {
+        openDatabase();
+        float total = 0;
+        Cursor c = mDatabase.rawQuery("SELECT sum(s_credits) FROM semester ",null);
+        if(c.getCount()>0)
+        {
+            c.moveToFirst();
+            total = c.getFloat(0);
+            c.close();
+        }
+        closeDatabase();
+        return total;
+    }
 }
