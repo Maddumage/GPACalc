@@ -12,10 +12,11 @@
     <color name="primaryDark">#274689</color>
     <color name="accent">#f15ea2</color>
     <color name="footer_text_color">#05867c</color>
-
+    <color name="safe">#d19603</color>
 
     <!--testStyle-->
     <color name="colorPrimary">#282230</color>
     <color name="colorPrimaryDark">#201c2a</color>
     <color name="colorAccent">#f15ea2</color>
+    <color name="warning">#B33A3A</color>
 </resources>

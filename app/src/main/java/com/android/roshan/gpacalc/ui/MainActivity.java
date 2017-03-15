@@ -1,12 +1,10 @@
 package com.android.roshan.gpacalc.ui;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,20 +18,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.android.roshan.gpacalc.R;
-import com.android.roshan.gpacalc.fragment.Graph;
 import com.android.roshan.gpacalc.fragment.GraphFragment;
 import com.android.roshan.gpacalc.fragment.HomeFragment;
-import com.android.roshan.gpacalc.fragment.NoticeDialogFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     FragmentTransaction fragmentTransaction;
     HomeFragment homeFragment;
-    Graph graphFragment;
+    GraphFragment graphFragment;
     FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +91,7 @@ public class MainActivity extends AppCompatActivity
                 fab.setEnabled(false);
                 fab.setVisibility(View.GONE);
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                graphFragment = new Graph();
+                graphFragment = new GraphFragment();
                 fragmentTransaction.replace(R.id.content_main,graphFragment).commit();
                 return true;
 
