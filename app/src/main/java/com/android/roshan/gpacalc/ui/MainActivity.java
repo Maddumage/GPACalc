@@ -3,6 +3,7 @@ package com.android.roshan.gpacalc.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +11,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,13 +26,14 @@ import com.android.roshan.gpacalc.R;
 import com.android.roshan.gpacalc.fragment.GraphFragment;
 import com.android.roshan.gpacalc.fragment.HomeFragment;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
 
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     FragmentTransaction fragmentTransaction;
     HomeFragment homeFragment;
     GraphFragment graphFragment;
     FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         homeFragment = new HomeFragment();
-        fragmentTransaction.replace(R.id.content_main,homeFragment).commit();
+        fragmentTransaction.replace(R.id.content_main, homeFragment).commit();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +96,7 @@ public class MainActivity extends AppCompatActivity
                 fab.setVisibility(View.GONE);
                 fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 graphFragment = new GraphFragment();
-                fragmentTransaction.replace(R.id.content_main,graphFragment).commit();
+                fragmentTransaction.replace(R.id.content_main, graphFragment).commit();
                 return true;
 
             default:
@@ -115,6 +119,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+//            SettingsFragment settingsFragment = new SettingsFragment();
+//            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.content_main,settingsFragment).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_share) {
 
@@ -126,43 +133,24 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     public void showNoticeDialog() {
 
 
         // Create an instance of the dialog fragment and show it
         LayoutInflater li = LayoutInflater.from(this);
         View promptsView = li.inflate(R.layout.add_result, null);
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                this);
+        ContextThemeWrapper ctw = new ContextThemeWrapper( this, R.style.MySwitch);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctw);
 
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
 
-        NumberPicker np = (NumberPicker)promptsView.findViewById(R.id.semester_no_picker);
-//Set the minimum value of NumberPicker
-        np.setMinValue(1);
-        //Specify the maximum value/number of NumberPicker
-        np.setMaxValue(10);
-
-        //Gets whether the selector wheel wraps when reaching the min/max value.
-        np.setWrapSelectorWheel(true);
-
-        //Set a value change listener for NumberPicker
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                //Display the newly selected number from picker
-                int sub_no = newVal;
-            }
-        });
-
-        final EditText input_sub_code = (EditText)promptsView.findViewById(R.id.input_subject_code);
-        final EditText input_sub_name = (EditText)promptsView.findViewById(R.id.input_subject_name);
-        final EditText input_sub_credit = (EditText)promptsView.findViewById(R.id.input_subject_credit);
-        final Spinner spinner = (Spinner)promptsView.findViewById(R.id.result_spinner);
-
-
+        final EditText input_sem_no = (EditText) promptsView.findViewById(R.id.semester_no_picker);
+        final EditText input_sub_code = (EditText) promptsView.findViewById(R.id.input_subject_code);
+        final EditText input_sub_name = (EditText) promptsView.findViewById(R.id.input_subject_name);
+        final EditText input_sub_credit = (EditText) promptsView.findViewById(R.id.input_subject_credit);
+        final Spinner spinner = (Spinner) promptsView.findViewById(R.id.result_spinner);
 
 
         // set dialog message
@@ -170,10 +158,11 @@ public class MainActivity extends AppCompatActivity
                 .setCancelable(false)
                 .setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 // get user input and set it to result
                                 // edit text
-                                String sub_code,sub_name,sub_credit,sub_result;
+                                String sem_no,sub_code, sub_name, sub_credit, sub_result;
+                                sem_no = input_sem_no.getText().toString();
                                 sub_code = input_sub_code.getText().toString();
                                 sub_name = input_sub_name.getText().toString();
                                 sub_credit = input_sub_credit.getText().toString();
@@ -182,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                         })
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });

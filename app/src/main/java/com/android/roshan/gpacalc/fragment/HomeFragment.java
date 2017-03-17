@@ -27,9 +27,10 @@ import com.android.roshan.gpacalc.util.Constant;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
-public class HomeFragment extends ListFragment{
+public class HomeFragment extends ListFragment {
 
     View rootView;
     ArrayList<Semester> semesterList;
@@ -47,7 +48,7 @@ public class HomeFragment extends ListFragment{
         super.onCreate(savedInstanceState);
         databaseHelper = new DatabaseHelper(getContext());
         //Check exists database
-        DBConnetion.openDB(databaseHelper,getContext());
+        DBConnetion.openDB(databaseHelper, getContext());
     }
 
 
@@ -70,7 +71,7 @@ public class HomeFragment extends ListFragment{
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
         String avg_gpa = df.format(databaseHelper.getAvgTotalGPA());
-        final_gpa.setText( avg_gpa);
+        final_gpa.setText(avg_gpa);
         total_credits.setText("" + databaseHelper.getTotalCreddit());
 
 
@@ -87,42 +88,84 @@ public class HomeFragment extends ListFragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
                 semester = semesterList.get(position);
-                bundle.putParcelable(Constant.BUNDLE_SEMESTER_KEY,semester);
+                bundle.putParcelable(Constant.BUNDLE_SEMESTER_KEY, semester);
                 fragmentTransaction = getFragmentManager().beginTransaction();
                 semesterFragment = new SemesterFragment();
                 semesterFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.content_main,semesterFragment).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.content_main, semesterFragment).addToBackStack(null).commit();
             }
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                alert.setTitle("Delete");
-                alert.setMessage("Do you want to delete this item?");
-                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // main code on after clicking yes\
-                        semesterList.remove(position);
-                        boolean response = databaseHelper.deleteSemesterById(semesterList.get(position).getId());
-                        homeAdapter.notifyDataSetChanged();
-                        if(response)
-                        {
-                            Toast.makeText(getContext(),"Item Removed",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                            Toast.makeText(getContext(),"Item Not Removed",Toast.LENGTH_LONG).show();
-                    }
-                });
-                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                alert.show();
+//                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+//                alert.setTitle("Delete");
+//                alert.setMessage("Do you want to delete this item?");
+//                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // main code on after clicking yes\
+//                        semester = semesterList.get(position);
+//                        boolean response = databaseHelper.deleteSemesterById(semester.getId());
+//                        semesterList.remove(position);
+//                        homeAdapter.notifyDataSetChanged();
+//                        if(response)
+//                        {
+//                            Toast.makeText(getContext(),"Item Removed",Toast.LENGTH_LONG).show();
+//                        }
+//                        else
+//                            Toast.makeText(getContext(),"Item Not Removed",Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//                alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                alert.show();
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Won't be able to recover this file!")
+                        .setCancelText("Cancel")
+                        .setConfirmText("Delete")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.cancel();
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                                semester = semesterList.get(position);
+                                boolean response = databaseHelper.deleteSemesterById(semester.getId());
+                                semesterList.remove(position);
+                                homeAdapter.notifyDataSetChanged();
+                                if (response) {
+                                    Toast.makeText(getContext(), "Result Removed", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Result Not Removed", Toast.LENGTH_LONG).show();
+                                }
+                                sweetAlertDialog
+                                        .setTitleText("Deleted!")
+                                        .setContentText("Result has been deleted!")
+                                        .setConfirmText("OK")
+                                        .showCancelButton(false)
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                sweetAlertDialog.dismissWithAnimation();
+                                            }
+                                        })
+                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        })
+                        .show();
                 return true;
             }
         });
